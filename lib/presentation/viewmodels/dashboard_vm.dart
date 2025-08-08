@@ -19,11 +19,23 @@ class DashboardViewModel extends ChangeNotifier {
   String _searchQuery = '';
   String get searchQuery => _searchQuery;
 
+  DateTime? _startDate;
+  DateTime? get startDate => _startDate;
+
+  DateTime? _endDate;
+  DateTime? get endDate => _endDate;
+
   int _offset = 0;
   final int _limit = 50;
 
   void setSearchQuery(String query) {
     _searchQuery = query;
+    loadEvents(refresh: true);
+  }
+
+  void setDateRange(DateTime? start, DateTime? end) {
+    _startDate = start;
+    _endDate = end;
     loadEvents(refresh: true);
   }
 
@@ -45,6 +57,8 @@ class DashboardViewModel extends ChangeNotifier {
       limit: _limit,
       offset: _offset,
       query: _searchQuery,
+      startDate: _startDate,
+      endDate: _endDate,
     );
 
     _events.addAll(newEvents);

@@ -34,27 +34,45 @@ class DiaryRepository {
     int limit = 50,
     int offset = 0,
     String? query,
+    DateTime? startDate,
+    DateTime? endDate,
   }) async {
     final db = await dbHelper.database;
     List<Map<String, dynamic>> maps;
 
+    String whereClause = '';
+    List<dynamic> whereArgs = [];
+
     if (query != null && query.isNotEmpty) {
-      maps = await db.query(
-        'events',
-        where: 'title LIKE ? OR description LIKE ?',
-        whereArgs: ['%$query%', '%$query%'],
-        orderBy: 'startTime DESC',
-        limit: limit,
-        offset: offset,
-      );
-    } else {
-      maps = await db.query(
-        'events',
-        orderBy: 'startTime DESC',
-        limit: limit,
-        offset: offset,
-      );
+      whereClause += '(title LIKE ? OR description LIKE ?)';
+      whereArgs.add('%$query%');
+      whereArgs.add('%$query%');
     }
+
+    if (startDate != null) {
+      if (whereClause.isNotEmpty) {
+        whereClause += ' AND ';
+      }
+      whereClause += 'startTime >= ?';
+      whereArgs.add(startDate.toIso8601String());
+    }
+
+    if (endDate != null) {
+      if (whereClause.isNotEmpty) {
+        whereClause += ' AND ';
+      }
+      whereClause += 'startTime <= ?';
+      whereArgs.add(endDate.toIso8601String());
+    }
+
+    maps = await db.query(
+      'events',
+      where: whereClause.isNotEmpty ? whereClause : null,
+      whereArgs: whereArgs.isNotEmpty ? whereArgs : null,
+      orderBy: 'startTime DESC',
+      limit: limit,
+      offset: offset,
+    );
 
     return List.generate(maps.length, (i) {
       return DiaryEvent.fromMap(maps[i]);

@@ -66,11 +66,29 @@ class _DashboardPageState extends State<DashboardPage> {
                 title: const Text('Dashboard'),
                 actions: [
                   IconButton(
+                    icon: const Icon(Icons.filter_list),
+                    onPressed: () async {
+                      final DateTimeRange? picked = await showDateRangePicker(
+                        context: context,
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                        initialDateRange: vm.startDate != null && vm.endDate != null
+                            ? DateTimeRange(start: vm.startDate!, end: vm.endDate!)
+                            : null,
+                      );
+                      if (picked != null) {
+                        vm.setDateRange(picked.start, picked.end);
+                      } else {
+                        vm.setDateRange(null, null); // Clear filter if cancelled
+                      }
+                    },
+                  ),
+                  IconButton(
                     icon: const Icon(Icons.search),
                     onPressed: () {
                       showSearch(
                         context: context,
-                        delegate: EventSearchDelegate(vm),
+                        delegate: EventSearchDelegate(vm, vm.searchQuery),
                       );
                     },
                   ),
@@ -121,7 +139,9 @@ class _DashboardPageState extends State<DashboardPage> {
 class EventSearchDelegate extends SearchDelegate {
   final DashboardViewModel viewModel;
 
-  EventSearchDelegate(this.viewModel);
+  EventSearchDelegate(this.viewModel, String initialQuery) {
+    query = initialQuery;
+  }
 
   @override
   List<Widget>? buildActions(BuildContext context) {
@@ -141,6 +161,7 @@ class EventSearchDelegate extends SearchDelegate {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
+        viewModel.setSearchQuery(query); // Save current query when closing
         close(context, null);
       },
     );
