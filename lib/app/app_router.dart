@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import '../../data/models/diary_event_model.dart';
+import '../../data/repositories/diary_repository.dart';
 import '../../presentation/views/dashboard_page.dart';
 import '../../presentation/views/events_page.dart';
 import '../../presentation/views/event_entry_page.dart';
@@ -54,7 +57,20 @@ final GoRouter router = GoRouter(
         final id = int.parse(state.pathParameters['id']!);
         return CustomTransitionPage(
           key: state.pageKey,
-          child: EventEntryPage(), // TODO: Pass the event to the page
+          child: FutureBuilder<DiaryEvent?>(
+            future: Provider.of<DiaryRepository>(context, listen: false).getEventById(id),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasData) {
+                  return EventEntryPage(event: snapshot.data!);
+                } else {
+                  return const Center(child: Text('Event not found'));
+                }
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

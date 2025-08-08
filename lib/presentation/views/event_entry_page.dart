@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../../data/models/diary_event_model.dart';
 import '../viewmodels/event_form_vm.dart';
 
 class EventEntryPage extends StatelessWidget {
-  const EventEntryPage({super.key});
+  final DiaryEvent? event;
+
+  const EventEntryPage({super.key, this.event});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => EventFormViewModel(diaryRepository: context.read()),
+      create: (_) => EventFormViewModel(diaryRepository: context.read(), initialEvent: event),
       child: Consumer<EventFormViewModel>(
         builder: (context, vm, child) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('New Event'),
+              title: Text(event == null ? 'New Event' : 'Edit Event'),
               actions: [
                 IconButton(
                   icon: const Icon(Icons.save),

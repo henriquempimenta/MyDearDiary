@@ -53,6 +53,9 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   Implemented a date range filter on the `DashboardPage`.
     *   **Fixed:** Addressed the black screen issue after saving an event by navigating back to the dashboard using `context.go()`.
     *   **Fixed:** Implemented date and time pickers for `startTime` and `endTime` fields in the event entry form.
+    *   **Feature:** Implemented interactive options (Edit, Delete, Share) for event cards on Dashboard and Events pages via a modal bottom sheet.
+    *   **Feature:** Enabled navigation to `EventEntryPage` for editing existing events, passing the `DiaryEvent` object.
+    *   **Feature:** Implemented event deletion functionality, refreshing the UI after deletion.
 
 ## 6. Polishing the Experience
 
