@@ -13,23 +13,45 @@ class DashboardViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  DateTimeRange _selectedDateRange = DateTimeRange(start: DateTime.now(), end: DateTime.now());
-  DateTimeRange get selectedDateRange => _selectedDateRange;
+  bool _hasMore = true;
+  bool get hasMore => _hasMore;
 
-  void getEventsForDate(DateTime date) async {
-    getEventsForDateRange(DateTimeRange(start: date, end: date));
+  String _searchQuery = '';
+  String get searchQuery => _searchQuery;
+
+  int _offset = 0;
+  final int _limit = 50;
+
+  void setSearchQuery(String query) {
+    _searchQuery = query;
+    loadEvents(refresh: true);
   }
 
-  void getEventsForDateRange(DateTimeRange dateRange) async {
-    _selectedDateRange = dateRange;
+  Future<void> loadEvents({bool refresh = false}) async {
+    if (_isLoading) return;
+
+    if (refresh) {
+      _events.clear();
+      _offset = 0;
+      _hasMore = true;
+    }
+
+    if (!_hasMore) return;
+
     _isLoading = true;
-    notifyListeners();
+    Future.microtask(() => notifyListeners());
 
-    final start = DateTime(dateRange.start.year, dateRange.start.month, dateRange.start.day);
-    final end = DateTime(dateRange.end.year, dateRange.end.month, dateRange.end.day).add(const Duration(days: 1));
+    final newEvents = await diaryRepository.getEventsPaginated(
+      limit: _limit,
+      offset: _offset,
+      query: _searchQuery,
+    );
 
-    _events = await diaryRepository.getEventsForDateRange(start, end);
+    _events.addAll(newEvents);
+    _offset += newEvents.length;
+    _hasMore = newEvents.length == _limit;
+
     _isLoading = false;
-    notifyListeners();
+    Future.microtask(() => notifyListeners());
   }
 }

@@ -19,37 +19,13 @@ class MainShell extends StatelessWidget {
               icon: Icon(Icons.dashboard),
               label: 'Dashboard',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.event),
-              label: 'Events',
-            ),
           ],
-          currentIndex: _calculateSelectedIndex(context),
-          onTap: (int index) => _onItemTapped(index, context),
+          currentIndex: 0,
+          onTap: (int index) {
+            // Only one tab, so no navigation needed
+          },
         ),
       ),
     );
-  }
-
-  static int _calculateSelectedIndex(BuildContext context) {
-    final String location = GoRouterState.of(context).uri.toString();
-    if (location.startsWith('/dashboard')) {
-      return 0;
-    }
-    if (location.startsWith('/events')) {
-      return 1;
-    }
-    return 0;
-  }
-
-  void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        GoRouter.of(context).go('/dashboard');
-        break;
-      case 1:
-        GoRouter.of(context).go('/events');
-        break;
-    }
   }
 }

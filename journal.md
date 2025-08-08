@@ -56,6 +56,7 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   **Feature:** Implemented interactive options (Edit, Delete, Share) for event cards on Dashboard and Events pages via a modal bottom sheet.
     *   **Feature:** Enabled navigation to `EventEntryPage` for editing existing events, passing the `DiaryEvent` object.
     *   **Feature:** Implemented event deletion functionality, refreshing the UI after deletion.
+    *   **Fixed:** Corrected the initial display of events on the Dashboard by refining the loading logic in `DashboardViewModel` and `DashboardPage`.
 
 ## 6. Polishing the Experience
 
@@ -65,3 +66,6 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   Implemented custom slide transitions for the event entry page.
     *   Used Flutter's built-in `AnimatedList` to add fade-in animations to the events list.
     *   **Feature:** Implemented relative time display (e.g., "now", "2 minutes ago") for event timestamps in `EventCard` and `DashboardPage`.
+    *   **Feature:** Removed the left-side date display from the timeline in `DashboardPage`.
+    *   **Feature:** Consolidated the Dashboard and Events pages into a single Dashboard view with search and lazy loading capabilities.
+    *   **Feature:** Displayed the number of events found during search in `DashboardPage`.

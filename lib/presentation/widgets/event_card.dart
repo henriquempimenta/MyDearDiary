@@ -5,7 +5,6 @@ import '../../data/models/diary_event_model.dart';
 import '../../data/repositories/diary_repository.dart';
 import '../../core/utils/time_formatter.dart';
 import '../../presentation/viewmodels/dashboard_vm.dart';
-import '../../presentation/viewmodels/events_vm.dart';
 
 class EventCard extends StatelessWidget {
   final DiaryEvent event;
@@ -34,13 +33,7 @@ class EventCard extends StatelessWidget {
                   Navigator.pop(bc);
                   final repository = Provider.of<DiaryRepository>(context, listen: false);
                   await repository.deleteEvent(event.id!); // Assuming id is not null for existing events
-                  // Refresh the relevant ViewModel based on the current route
-                  final currentRoute = GoRouterState.of(context).uri.toString();
-                  if (currentRoute.startsWith('/dashboard')) {
-                    Provider.of<DashboardViewModel>(context, listen: false).getEventsForDate(DateTime.now()); // Refresh current day
-                  } else if (currentRoute.startsWith('/events')) {
-                    Provider.of<EventsViewModel>(context, listen: false).getAllEvents();
-                  }
+                  Provider.of<DashboardViewModel>(context, listen: false).loadEvents();
                 },
               ),
               ListTile(

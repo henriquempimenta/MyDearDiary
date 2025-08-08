@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../data/models/diary_event_model.dart';
 import '../../data/repositories/diary_repository.dart';
 import '../../presentation/views/dashboard_page.dart';
-import '../../presentation/views/events_page.dart';
 import '../../presentation/views/event_entry_page.dart';
 import '../../presentation/widgets/main_shell.dart';
 
@@ -23,12 +22,6 @@ final GoRouter router = GoRouter(
           path: '/dashboard',
           builder: (BuildContext context, GoRouterState state) {
             return const DashboardPage();
-          },
-        ),
-        GoRoute(
-          path: '/events',
-          builder: (BuildContext context, GoRouterState state) {
-            return const EventsPage();
           },
         ),
       ],
