@@ -1,0 +1,61 @@
+# Journal: Building "My Dear Diary"
+
+This journal documents the steps taken to build the "My Dear Diary" Flutter application, following the provided development guides.
+
+## 1. Environment Setup
+
+*   **Intention:** To establish a consistent and reproducible development environment.
+*   **Steps Taken:**
+    *   Read and understood the `Diary App Development Guide_.md` and `Archlinux Flutter Development Setup Guide.md`.
+    *   Created a `Dockerfile` to define the Flutter development environment.
+    *   Created a `docker-compose.yml` to orchestrate the container.
+    *   Created an `entrypoint.sh` script to run commands within the container.
+    *   Built and started the Docker container.
+    *   Resolved file permission issues to ensure proper operation.
+
+## 2. Project Scaffolding
+
+*   **Intention:** To create a well-organized and scalable project structure.
+*   **Steps Taken:**
+    *   Created a new Flutter project within the Docker container.
+    *   Established the directory structure as specified in the guide (app, core, data, presentation).
+    *   Added all necessary dependencies to the `pubspec.yaml` file.
+
+## 3. Data Persistence Layer
+
+*   **Intention:** To create a robust and efficient local database for storing diary entries.
+*   **Steps Taken:**
+    *   Created the `DiaryEvent` data model.
+    *   Implemented the `DatabaseHelper` as a singleton to manage the SQLite database connection.
+    *   Created the `DiaryRepository` to abstract data operations and provide a clean API to the rest of the application.
+
+## 4. User Interface
+
+*   **Intention:** To build the core UI screens and navigation.
+*   **Steps Taken:**
+    *   Configured `go_router` for declarative navigation.
+    *   Created the main application widget (`MyDearDiaryApp`).
+    *   Updated `main.dart` to run the application.
+    *   Created the `DashboardPage` and `EventsPage`.
+    *   Created a reusable `EventCard` widget.
+    *   Implemented the corresponding `DashboardViewModel` and `EventsViewModel` to manage the state of the UI.
+    *   Implemented the timeline view on the `DashboardPage` using the `timeline_tile` package.
+    *   Implemented the `MainShell` widget with a `BottomNavigationBar` for top-level navigation.
+
+## 5. Advanced Features
+
+*   **Intention:** To implement interactive and intelligent features to enhance the user experience.
+*   **Steps Taken:**
+    *   Created the `EventFormViewModel` to manage the state of the event entry form.
+    *   Created the `EventEntryPage` with a form for creating and editing events.
+    *   Implemented intelligent title suggestions using `flutter_typeahead`.
+    *   Added debouncing to the title suggestion feature to optimize performance.
+    *   Implemented a date range filter on the `DashboardPage`.
+
+## 6. Polishing the Experience
+
+*   **Intention:** To add visual flourishes and animations to create a more engaging and delightful user experience.
+*   **Steps Taken:**
+    *   Created and applied an `AnimatedGradientBackground` to the main application shell.
+    *   Implemented custom slide transitions for the event entry page.
+    *   Used Flutter's built-in `AnimatedList` to add fade-in animations to the events list.

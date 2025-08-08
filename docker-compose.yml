@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  flutter-dev:
+    build: .
+    # Use host networking to allow the container to connect to the Android emulator on the host
+    network_mode: "host"
+    volumes:
+      # Sync your local project files with the container
+      - .:/app
+      # Persist pub cache between runs to speed up dependency fetching
+      - flutter_cache:/root/.pub-cache
+    # Keep the container running
+    command: tail -f /dev/null
+
+volumes:
+  flutter_cache:

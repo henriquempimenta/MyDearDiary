@@ -1,0 +1,61 @@
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# Android
+/android/app/src/main/assets/flutter_assets/
+/android/app/src/main/java/io/flutter/plugins/
+/android/app/src/main/jniLibs/
+/android/app/build/
+/android/build/
+/android/gradle/
+/android/gradlew
+/android/gradlew.bat
+/android/local.properties
+/android/.gradle/
+
+# iOS
+/ios/Flutter/App.framework
+/ios/Flutter/engine.xcconfig
+/ios/Flutter/pod_plugin_symlink
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/flutter_export_environment.sh
+/ios/Pods/
+/ios/Runner/GeneratedPluginRegistrant.h
+/ios/Runner/GeneratedPluginRegistrant.m
+/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+/ios/Runner.xcworkspace/xcuserdata/
+/ios/Runner.xcodeproj/project.xcworkspace/
+/ios/Runner.xcodeproj/xcuserdata/
+/ios/ServiceDefinitions.json
+/ios/Flutter/flutter_assets/
+
+# macOS
+/macos/Flutter/ephemeral/
+/macos/Flutter/Generated.xcconfig
+/macos/Flutter/pod_plugin_symlink
+/macos/Pods/
+/macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+/macos/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+/macos/Runner.xcworkspace/xcuserdata/
+/macos/Runner.xcodeproj/project.xcworkspace/
+/macos/Runner.xcodeproj/xcuserdata/
+
+# Linux
+/linux/flutter/ephemeral/
+
+# Windows
+/windows/flutter/ephemeral/
+
+# General
+*.iml
+*.lastbuildstate
+*.swp
+*~
+.idea/
+.vscode/
