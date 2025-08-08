@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import '../viewmodels/dashboard_vm.dart';
 import '../widgets/event_card.dart';
+import '../../core/utils/time_formatter.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -50,7 +51,7 @@ class DashboardPage extends StatelessWidget {
                               width: 20,
                               color: Colors.blue,
                             ),
-                            startChild: Text(event.startTime.toString()),
+                            startChild: Text(formatRelativeTime(event.startTime)),
                             endChild: EventCard(event: event),
                           );
                         },
