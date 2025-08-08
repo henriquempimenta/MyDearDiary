@@ -51,6 +51,8 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   Implemented intelligent title suggestions using `flutter_typeahead`.
     *   Added debouncing to the title suggestion feature to optimize performance.
     *   Implemented a date range filter on the `DashboardPage`.
+    *   **Fixed:** Addressed the black screen issue after saving an event by navigating back to the dashboard using `context.go()`.
+    *   **Fixed:** Implemented date and time pickers for `startTime` and `endTime` fields in the event entry form.
 
 ## 6. Polishing the Experience
 
@@ -59,3 +61,4 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   Created and applied an `AnimatedGradientBackground` to the main application shell.
     *   Implemented custom slide transitions for the event entry page.
     *   Used Flutter's built-in `AnimatedList` to add fade-in animations to the events list.
+    *   **Feature:** Implemented relative time display (e.g., "now", "2 minutes ago") for event timestamps in `EventCard` and `DashboardPage`.
