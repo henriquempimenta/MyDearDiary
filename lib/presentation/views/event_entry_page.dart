@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/event_form_vm.dart';
 
@@ -20,7 +21,7 @@ class EventEntryPage extends StatelessWidget {
                   icon: const Icon(Icons.save),
                   onPressed: () async {
                     if (await vm.saveEvent()) {
-                      Navigator.of(context).pop();
+                      context.go('/dashboard');
                     }
                   },
                 ),
@@ -58,6 +59,50 @@ class EventEntryPage extends StatelessWidget {
                     TextFormField(
                       controller: vm.descriptionController,
                       decoration: const InputDecoration(labelText: 'Description'),
+                    ),
+                    TextFormField(
+                      readOnly: true,
+                      controller: TextEditingController(text: vm.startTime.toLocal().toString().split('.')[0]),
+                      decoration: const InputDecoration(labelText: 'Start Time'),
+                      onTap: () async {
+                        final date = await showDatePicker(
+                          context: context,
+                          initialDate: vm.startTime,
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2100),
+                        );
+                        if (date != null) {
+                          final time = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.fromDateTime(vm.startTime),
+                          );
+                          if (time != null) {
+                            vm.setStartTime(DateTime(date.year, date.month, date.day, time.hour, time.minute));
+                          }
+                        }
+                      },
+                    ),
+                    TextFormField(
+                      readOnly: true,
+                      controller: TextEditingController(text: vm.endTime?.toLocal().toString().split('.')[0] ?? ''),
+                      decoration: const InputDecoration(labelText: 'End Time (Optional)'),
+                      onTap: () async {
+                        final date = await showDatePicker(
+                          context: context,
+                          initialDate: vm.endTime ?? vm.startTime,
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2100),
+                        );
+                        if (date != null) {
+                          final time = await showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.fromDateTime(vm.endTime ?? vm.startTime),
+                          );
+                          if (time != null) {
+                            vm.setEndTime(DateTime(date.year, date.month, date.day, time.hour, time.minute));
+                          }
+                        }
+                      },
                     ),
                   ],
                 ),
