@@ -24,7 +24,7 @@ class EventEntryPage extends StatelessWidget {
                   icon: const Icon(Icons.save),
                   onPressed: () async {
                     if (await vm.saveEvent()) {
-                      context.go('/dashboard');
+                      context.pop();
                     }
                   },
                 ),

@@ -23,7 +23,11 @@ class EventCard extends StatelessWidget {
                 title: const Text('Edit'),
                 onTap: () {
                   Navigator.pop(bc);
-                  context.push('/edit-event/${event.id}');
+                  context.push('/edit-event/${event.id}').then((_) {
+                    // This callback is executed when the EventEntryPage is popped.
+                    // We refresh the events to show the updated event.
+                    Provider.of<DashboardViewModel>(context, listen: false).loadEvents(refresh: true);
+                  });
                 },
               ),
               ListTile(
@@ -33,7 +37,7 @@ class EventCard extends StatelessWidget {
                   Navigator.pop(bc);
                   final repository = Provider.of<DiaryRepository>(context, listen: false);
                   await repository.deleteEvent(event.id!); // Assuming id is not null for existing events
-                  Provider.of<DashboardViewModel>(context, listen: false).loadEvents();
+                  Provider.of<DashboardViewModel>(context, listen: false).loadEvents(refresh: true);
                 },
               ),
               ListTile(

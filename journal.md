@@ -60,6 +60,7 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   **Feature:** Implemented time filter for search using a dedicated button and `showDateRangePicker`.
     *   **Feature:** Made the search bar remember the previously searched text.
     *   **Feature:** Implemented a live counter for events found in the search bar as the user types.
+    *   **Fixed:** Ensured the dashboard refreshes after creating, editing, or deleting an event by using `.then()` callbacks on `context.push()` and `loadEvents(refresh: true)`.
 
 ## 6. Polishing the Experience
 

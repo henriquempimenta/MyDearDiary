@@ -89,12 +89,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       showSearch(
                         context: context,
                         delegate: EventSearchDelegate(vm, vm.searchQuery),
-                      ).then((_) {
-                        // This callback is executed when the search delegate is dismissed.
-                        // The view model's search query is already updated in the delegate's buildLeading.
-                        // We just need to ensure the dashboard reloads with the correct query.
-                        vm.loadEvents(refresh: true);
-                      });
+                      );
                     },
                   ),
                 ],
@@ -130,7 +125,13 @@ class _DashboardPageState extends State<DashboardPage> {
                 },
               ),
               floatingActionButton: FloatingActionButton(
-                onPressed: () => context.push('/new-event'),
+                onPressed: () {
+                  context.push('/new-event').then((_) {
+                    // This callback is executed when the EventEntryPage is popped.
+                    // We refresh the events to show the newly created event.
+                    vm.loadEvents(refresh: true);
+                  });
+                },
                 child: const Icon(Icons.add),
               ),
             );
