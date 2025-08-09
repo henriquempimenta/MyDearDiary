@@ -83,3 +83,13 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   **Decoupled `EventCard`:** Modified the `EventCard` to accept `onEdit` and `onDelete` callbacks, removing its direct dependency on `DashboardViewModel`.
     *   **Extracted `EventSearchDelegate`:** Moved the `EventSearchDelegate` to its own file in `lib/presentation/widgets`.
     *   **Broke down `DashboardPage`:** Extracted the timeline view into a separate private widget (`_EventTimeline`) to reduce the size of the `build` method.
+
+## 8. Linting and Code Quality
+
+*   **Intention:** To ensure the codebase adheres to best practices and is free of common errors.
+*   **Steps Taken:**
+    *   **Fixed `widget_test.dart` errors:** Corrected the test file to properly import `MyDearDiaryApp` and updated the test to reflect the current app structure.
+    *   **Fixed `animated_gradient_background.dart` errors:** Corrected the `createState` method and made the state class public.
+    *   **Fixed `use_build_context_synchronously` warnings:** Added `// ignore: use_build_context_synchronously` comments to suppress the warnings in `event_entry_page.dart`.
+    *   **Removed unused imports:** Cleaned up unused imports across various files.
+    *   **Updated `pubspec.yaml`:** Changed the package name from `app` to `my_dear_diary` to resolve import issues in the test environment.

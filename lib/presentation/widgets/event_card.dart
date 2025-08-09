@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import '../../data/models/diary_event_model.dart';
-import '../../data/repositories/diary_repository.dart';
 import '../../core/utils/time_formatter.dart';
 
 class EventCard extends StatelessWidget {

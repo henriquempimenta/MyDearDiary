@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'animated_gradient_background.dart';
 
 class MainShell extends StatelessWidget {

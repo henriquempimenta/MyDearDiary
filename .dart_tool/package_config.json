@@ -344,13 +344,13 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "app",
+      "name": "my_dear_diary",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2025-08-09T00:25:25.398292Z",
+  "generated": "2025-08-09T12:26:16.450228Z",
   "generator": "pub",
   "generatorVersion": "2.19.4"
 }

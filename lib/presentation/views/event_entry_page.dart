@@ -23,7 +23,10 @@ class EventEntryPage extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.save),
                   onPressed: () async {
+                    // ignore: use_build_context_synchronously
+                    if (!context.mounted) return;
                     if (await vm.saveEvent()) {
+                      // ignore: use_build_context_synchronously
                       context.pop();
                     }
                   },
@@ -68,6 +71,8 @@ class EventEntryPage extends StatelessWidget {
                       controller: TextEditingController(text: vm.startTime.toLocal().toString().split('.')[0]),
                       decoration: const InputDecoration(labelText: 'Start Time'),
                       onTap: () async {
+                        // ignore: use_build_context_synchronously
+                        if (!context.mounted) return;
                         final date = await showDatePicker(
                           context: context,
                           initialDate: vm.startTime,
@@ -75,6 +80,8 @@ class EventEntryPage extends StatelessWidget {
                           lastDate: DateTime(2100),
                         );
                         if (date != null) {
+                          // ignore: use_build_context_synchronously
+                          if (!context.mounted) return;
                           final time = await showTimePicker(
                             context: context,
                             initialTime: TimeOfDay.fromDateTime(vm.startTime),
@@ -90,6 +97,8 @@ class EventEntryPage extends StatelessWidget {
                       controller: TextEditingController(text: vm.endTime?.toLocal().toString().split('.')[0] ?? ''),
                       decoration: const InputDecoration(labelText: 'End Time (Optional)'),
                       onTap: () async {
+                        // ignore: use_build_context_synchronously
+                        if (!context.mounted) return;
                         final date = await showDatePicker(
                           context: context,
                           initialDate: vm.endTime ?? vm.startTime,
@@ -97,6 +106,8 @@ class EventEntryPage extends StatelessWidget {
                           lastDate: DateTime(2100),
                         );
                         if (date != null) {
+                          // ignore: use_build_context_synchronously
+                          if (!context.mounted) return;
                           final time = await showTimePicker(
                             context: context,
                             initialTime: TimeOfDay.fromDateTime(vm.endTime ?? vm.startTime),

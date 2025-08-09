@@ -7,7 +7,7 @@ class DashboardViewModel extends ChangeNotifier {
 
   DashboardViewModel({required this.diaryRepository});
 
-  List<DiaryEvent> _events = [];
+  final List<DiaryEvent> _events = [];
   List<DiaryEvent> get events => _events;
 
   bool _isLoading = false;

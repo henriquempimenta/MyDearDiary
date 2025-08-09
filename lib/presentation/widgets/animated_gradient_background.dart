@@ -7,10 +7,10 @@ class AnimatedGradientBackground extends StatefulWidget {
   final Widget child;
 
   @override
-  _AnimatedGradientBackgroundState createState() => _AnimatedGradientBackgroundState();
+  AnimatedGradientBackgroundState createState() => AnimatedGradientBackgroundState();
 }
 
-class _AnimatedGradientBackgroundState extends State<AnimatedGradientBackground> {
+class AnimatedGradientBackgroundState extends State<AnimatedGradientBackground> {
   List<Color> colorList = [
     Colors.red,
     Colors.blue,
