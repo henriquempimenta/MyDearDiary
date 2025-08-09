@@ -72,3 +72,5 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   **Feature:** Removed the left-side date display from the timeline in `DashboardPage`.
     *   **Feature:** Consolidated the Dashboard and Events pages into a single Dashboard view with search and lazy loading capabilities.
     *   **Feature:** Displayed the number of events found during search in `DashboardPage`.
+    *   **Feature:** Changed the app name to "My Dear Diary" for Android and iOS.
+    *   **Feature:** Moved `MyDearDiary.png` to `assets/app_icon` for app icon generation.
