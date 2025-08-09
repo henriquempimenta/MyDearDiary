@@ -75,3 +75,11 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   **Feature:** Displayed the number of events found during search in `DashboardPage`.
     *   **Feature:** Changed the app name to "My Dear Diary" for Android and iOS.
     *   **Feature:** Moved `MyDearDiary.png` to `assets/app_icon` for app icon generation.
+
+## 7. Refactoring
+
+*   **Intention:** To improve code quality, reduce coupling, and increase modularity.
+*   **Steps Taken:**
+    *   **Decoupled `EventCard`:** Modified the `EventCard` to accept `onEdit` and `onDelete` callbacks, removing its direct dependency on `DashboardViewModel`.
+    *   **Extracted `EventSearchDelegate`:** Moved the `EventSearchDelegate` to its own file in `lib/presentation/widgets`.
+    *   **Broke down `DashboardPage`:** Extracted the timeline view into a separate private widget (`_EventTimeline`) to reduce the size of the `build` method.

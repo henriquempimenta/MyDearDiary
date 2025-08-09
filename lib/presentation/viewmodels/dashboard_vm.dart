@@ -39,6 +39,11 @@ class DashboardViewModel extends ChangeNotifier {
     loadEvents(refresh: true);
   }
 
+  Future<void> deleteEvent(int eventId) async {
+    await diaryRepository.deleteEvent(eventId);
+    loadEvents(refresh: true);
+  }
+
   Future<void> loadEvents({bool refresh = false}) async {
     if (_isLoading) return;
 

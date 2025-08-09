@@ -4,12 +4,13 @@ import 'package:provider/provider.dart';
 import '../../data/models/diary_event_model.dart';
 import '../../data/repositories/diary_repository.dart';
 import '../../core/utils/time_formatter.dart';
-import '../../presentation/viewmodels/dashboard_vm.dart';
 
 class EventCard extends StatelessWidget {
   final DiaryEvent event;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
-  const EventCard({super.key, required this.event});
+  const EventCard({super.key, required this.event, required this.onEdit, required this.onDelete});
 
   void _showEventOptions(BuildContext context) {
     showModalBottomSheet(
@@ -23,21 +24,15 @@ class EventCard extends StatelessWidget {
                 title: const Text('Edit'),
                 onTap: () {
                   Navigator.pop(bc);
-                  context.push('/edit-event/${event.id}').then((_) {
-                    // This callback is executed when the EventEntryPage is popped.
-                    // We refresh the events to show the updated event.
-                    Provider.of<DashboardViewModel>(context, listen: false).loadEvents(refresh: true);
-                  });
+                  onEdit();
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.delete),
                 title: const Text('Delete'),
-                onTap: () async {
+                onTap: () {
                   Navigator.pop(bc);
-                  final repository = Provider.of<DiaryRepository>(context, listen: false);
-                  await repository.deleteEvent(event.id!); // Assuming id is not null for existing events
-                  Provider.of<DashboardViewModel>(context, listen: false).loadEvents(refresh: true);
+                  onDelete();
                 },
               ),
               ListTile(
