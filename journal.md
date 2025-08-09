@@ -59,6 +59,7 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   **Fixed:** Corrected the initial display of events on the Dashboard by refining the loading logic in `DashboardViewModel` and `DashboardPage`.
     *   **Feature:** Implemented time filter for search using a dedicated button and `showDateRangePicker`.
     *   **Feature:** Made the search bar remember the previously searched text.
+    *   **Feature:** Implemented a live counter for events found in the search bar as the user types.
 
 ## 6. Polishing the Experience
 

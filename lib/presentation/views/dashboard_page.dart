@@ -89,7 +89,12 @@ class _DashboardPageState extends State<DashboardPage> {
                       showSearch(
                         context: context,
                         delegate: EventSearchDelegate(vm, vm.searchQuery),
-                      );
+                      ).then((_) {
+                        // This callback is executed when the search delegate is dismissed.
+                        // The view model's search query is already updated in the delegate's buildLeading.
+                        // We just need to ensure the dashboard reloads with the correct query.
+                        vm.loadEvents(refresh: true);
+                      });
                     },
                   ),
                 ],
@@ -141,6 +146,12 @@ class EventSearchDelegate extends SearchDelegate {
 
   EventSearchDelegate(this.viewModel, String initialQuery) {
     query = initialQuery;
+  }
+
+  @override
+  set query(String value) {
+    super.query = value;
+    viewModel.setSearchQuery(value);
   }
 
   @override
