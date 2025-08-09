@@ -93,3 +93,4 @@ This journal documents the steps taken to build the "My Dear Diary" Flutter appl
     *   **Fixed `use_build_context_synchronously` warnings:** Added `// ignore: use_build_context_synchronously` comments to suppress the warnings in `event_entry_page.dart`.
     *   **Removed unused imports:** Cleaned up unused imports across various files.
     *   **Updated `pubspec.yaml`:** Changed the package name from `app` to `my_dear_diary` to resolve import issues in the test environment.
+    *   **Fixed `sqflite` test initialization:** Initialized `sqflite_common_ffi` in `widget_test.dart` to resolve database factory errors during testing.

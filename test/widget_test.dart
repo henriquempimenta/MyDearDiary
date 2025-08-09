@@ -1,13 +1,29 @@
-
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_dear_diary/app/my_dear_diary_app.dart';
+import 'package:provider/provider.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:my_dear_diary/data/repositories/diary_repository.dart';
+import 'package:my_dear_diary/presentation/views/dashboard_page.dart';
+import 'package:my_dear_diary/presentation/viewmodels/dashboard_vm.dart';
 
 void main() {
-  testWidgets('Dashboard smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyDearDiaryApp());
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
+  group('DashboardPage', () {
+    testWidgets('displays Dashboard title', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Provider<DiaryRepository>(
+          create: (_) => DiaryRepository(),
+          child: MaterialApp(
+            home: ChangeNotifierProvider(
+              create: (_) => DashboardViewModel(diaryRepository: DiaryRepository()),
+              child: const DashboardPage(),
+            ),
+          ),
+        ),
+      );
 
-    // Verify that the dashboard page is displayed.
-    expect(find.text('Dashboard'), findsOneWidget);
+      expect(find.text('Dashboard'), findsOneWidget);
+    });
   });
 }

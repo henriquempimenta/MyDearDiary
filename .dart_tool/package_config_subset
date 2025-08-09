@@ -54,6 +54,10 @@ fake_async
 2.12
 file:///root/.pub-cache/hosted/pub.dev/fake_async-1.3.1/
 file:///root/.pub-cache/hosted/pub.dev/fake_async-1.3.1/lib/
+ffi
+2.17
+file:///root/.pub-cache/hosted/pub.dev/ffi-2.0.2/
+file:///root/.pub-cache/hosted/pub.dev/ffi-2.0.2/lib/
 flutter_keyboard_visibility
 2.12
 file:///root/.pub-cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.1/
@@ -170,6 +174,14 @@ sqflite_common
 2.18
 file:///root/.pub-cache/hosted/pub.dev/sqflite_common-2.4.5+1/
 file:///root/.pub-cache/hosted/pub.dev/sqflite_common-2.4.5+1/lib/
+sqflite_common_ffi
+2.18
+file:///root/.pub-cache/hosted/pub.dev/sqflite_common_ffi-2.2.5/
+file:///root/.pub-cache/hosted/pub.dev/sqflite_common_ffi-2.2.5/lib/
+sqlite3
+2.18
+file:///root/.pub-cache/hosted/pub.dev/sqlite3-1.11.2/
+file:///root/.pub-cache/hosted/pub.dev/sqlite3-1.11.2/lib/
 stack_trace
 2.18
 file:///root/.pub-cache/hosted/pub.dev/stack_trace-1.11.0/
